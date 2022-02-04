@@ -1,9 +1,33 @@
 //! `timed-locks` is a set of smart pointers to `tokio::sync` locks that can be
-//! used as drop-in replacement and will panic after a given timeout when the
-//! lock cannot be acquired. Default timeout is 30 seconds. Failsafe mechanism
-//! to give your service a chance to recover from a deadlock.
+//! used as drop-in replacement and will either panic or return an error after a
+//! given timeout when the lock cannot be acquired. Default timeout is 30
+//! seconds.
 //!
-//! # Example
+//! # Motivation
+//!
+//! In smaller codebases it's fairly trivial to prevent deadlocks by making sure
+//! that you simply don't introduce any. As the codebase gets more complex
+//! however, it gets more complex to cover all branches with automated or manual
+//! testing and so the chances to unintentionally introduce deadlocks get
+//! higher. In case a potential deadlock is introduced and makes it way into
+//! production, it might not happen directly but only after a while when a
+//! specific scenario in the codebase happens. In such cases it's often wanted
+//! that a service can recover. While you can monitor services for
+//! responsiveness from the outside and restart them if required, doing that
+//! is offloading the responsbility to a thirdparty. So in order to have a
+//! backup plan inside the service itself, it can be useful to have failsafe
+//! mechanism in place that makes it possible to have the service itself recover
+//! from a deadlock.
+//!
+//! The default behavior of panicking was chosen since just returning an error
+//! might not help break the deadlock in a service in case the bug is
+//! selfenforcing. So to have higher chances of recovering the process or task
+//! should be shutdown completely by just panicking. However, if you are certain
+//! that in your specific scenario returning errors can lead to gracefully
+//! handling a deadlock there are the `read_err` / `write_err` methods that
+//! return an error instead of panicking.
+//!
+//! # Examples
 //!
 //! Deadlock that panics after 30 seconds:
 //!
@@ -11,7 +35,17 @@
 //! # async {
 //! let lock = timed_locks::RwLock::new(std::collections::HashSet::<usize>::new());
 //! let _lock = lock.read().await;
-//! lock.write();
+//! lock.write().await;
+//! # };
+//! ```
+//!
+//! Deadlock that returns an error after 30 seconds:
+//!
+//! ```
+//! # async {
+//! let lock = timed_locks::RwLock::new(std::collections::HashSet::<usize>::new());
+//! let _lock = lock.read().await;
+//! lock.write_err().await.unwrap();
 //! # };
 //! ```
 

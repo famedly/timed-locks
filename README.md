@@ -11,9 +11,7 @@
 [badge-docs-main-img]: https://img.shields.io/badge/docs-main-blue
 [badge-docs-main-url]: https://famedly.gitlab.io/company/backend/templates/timed-locks/timed_locks/index.html
 
-`timed-locks` is a set of smart pointers to `tokio::sync` locks that can be used as drop-in
-replacement and will panic after a given timeout when the lock cannot be acquired. Default timeout
-is 30 seconds. Failsafe mechanism to give your service a chance to recover from a deadlock.
+Smart pointers to `tokio::sync` locks that either panic or error after a timeout.
 
 ## Pre-commit usage
 
