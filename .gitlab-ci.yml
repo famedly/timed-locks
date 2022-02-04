@@ -1,8 +1,8 @@
 include:
-  - project: 'famedly/company/devops/templates/ci-cd'
+  - project: "famedly/company/devops/templates/ci-cd"
     ref: rust-v1
     file:
-      - '/rust.yml'
+      - "/rust.yml"
 
 stages:
   - test
@@ -14,9 +14,6 @@ cargo-check:
 
 cargo-coverage:
   extends: .cargo_coverage
-
-cargo-publish:
-  extends: .cargo_publish
 
 pages:
   extends: .cargo_doc
