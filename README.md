@@ -1,17 +1,19 @@
-# Project Name
+# timed-locks
 
 [![pipeline status][badge-pipeline-img]][badge-pipeline-url]
 [![coverage report][badge-coverage-img]][badge-coverage-url]
 [![docs main][badge-docs-main-img]][badge-docs-main-url]
 
-[badge-pipeline-img]: https://gitlab.com/famedly/company/backend/templates/service-template/badges/main/pipeline.svg
-[badge-pipeline-url]: https://gitlab.com/famedly/company/backend/templates/service-template/-/commits/main
-[badge-coverage-img]: https://gitlab.com/famedly/company/backend/templates/service-template/badges/main/coverage.svg
-[badge-coverage-url]: https://gitlab.com/famedly/company/backend/templates/service-template/-/commits/main
+[badge-pipeline-img]: https://gitlab.com/famedly/company/backend/templates/timed-locks/badges/main/pipeline.svg
+[badge-pipeline-url]: https://gitlab.com/famedly/company/backend/templates/timed-locks/-/commits/main
+[badge-coverage-img]: https://gitlab.com/famedly/company/backend/templates/timed-locks/badges/main/coverage.svg
+[badge-coverage-url]: https://gitlab.com/famedly/company/backend/templates/timed-locks/-/commits/main
 [badge-docs-main-img]: https://img.shields.io/badge/docs-main-blue
-[badge-docs-main-url]: https://famedly.gitlab.io/company/backend/templates/service-template/project_name/index.html
+[badge-docs-main-url]: https://famedly.gitlab.io/company/backend/templates/timed-locks/timed_locks/index.html
 
-Short description of the project.
+`timed-locks` is a set of smart pointers to `tokio::sync` locks that can be used as drop-in
+replacement and will panic after a given timeout when the lock cannot be acquired. Default timeout
+is 30 seconds. Failsafe mechanism to give your service a chance to recover from a deadlock.
 
 ## Pre-commit usage
 
