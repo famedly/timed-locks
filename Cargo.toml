@@ -1,9 +1,17 @@
 [package]
-name = "project-name"
+name = "timed-locks"
 version = "0.1.0"
-authors = []
+authors = ["Johannes Becker <j.becker@famedly.com>"]
 edition = "2021"
-resolver = "2"
-publish = ["famedly"]
+description = "Smart pointers to `tokio::sync` locks that panic after a timeout."
+repository = "https://gitlab.com/famedly/company/backend/libraries/timed-locks"
+documentation = "https://docs.rs/timed-locks"
+readme = "README.md"
+license = "AGPL-3.0-only"
 
 [dependencies]
+thiserror = "1.0.30"
+tokio = { version = "1.16.1", features = ["sync", "time"] }
+
+[dev-dependencies]
+tokio = { version = "1.16.1", features = ["macros", "time", "rt", "test-util"] }
