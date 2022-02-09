@@ -4,12 +4,12 @@
 [![coverage report][badge-coverage-img]][badge-coverage-url]
 [![docs main][badge-docs-main-img]][badge-docs-main-url]
 
-[badge-pipeline-img]: https://gitlab.com/famedly/company/backend/templates/timed-locks/badges/main/pipeline.svg
-[badge-pipeline-url]: https://gitlab.com/famedly/company/backend/templates/timed-locks/-/commits/main
-[badge-coverage-img]: https://gitlab.com/famedly/company/backend/templates/timed-locks/badges/main/coverage.svg
-[badge-coverage-url]: https://gitlab.com/famedly/company/backend/templates/timed-locks/-/commits/main
+[badge-pipeline-img]: https://gitlab.com/famedly/company/backend/libraries/timed-locks/badges/main/pipeline.svg
+[badge-pipeline-url]: https://gitlab.com/famedly/company/backend/libraries/timed-locks/-/commits/main
+[badge-coverage-img]: https://gitlab.com/famedly/company/backend/libraries/timed-locks/badges/main/coverage.svg
+[badge-coverage-url]: https://gitlab.com/famedly/company/backend/libraries/timed-locks/-/commits/main
 [badge-docs-main-img]: https://img.shields.io/badge/docs-main-blue
-[badge-docs-main-url]: https://famedly.gitlab.io/company/backend/templates/timed-locks/timed_locks/index.html
+[badge-docs-main-url]: https://famedly.gitlab.io/company/backend/libraries/timed-locks/timed_locks/index.html
 
 Smart pointers to `tokio::sync` locks that either panic or error after a timeout.
 
