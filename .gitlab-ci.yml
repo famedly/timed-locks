@@ -12,8 +12,5 @@ stages:
 cargo-check:
   extends: .cargo_check
 
-cargo-coverage:
-  extends: .cargo_coverage
-
 pages:
   extends: .cargo_doc
