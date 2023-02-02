@@ -33,7 +33,8 @@
 //!
 //! ```
 //! # async {
-//! let lock = timed_locks::RwLock::new(std::collections::HashSet::<usize>::new());
+//! let lock =
+//! 	timed_locks::RwLock::new(std::collections::HashSet::<usize>::new());
 //! let _lock = lock.read().await;
 //! lock.write().await;
 //! # };
@@ -43,7 +44,8 @@
 //!
 //! ```
 //! # async {
-//! let lock = timed_locks::RwLock::new(std::collections::HashSet::<usize>::new());
+//! let lock =
+//! 	timed_locks::RwLock::new(std::collections::HashSet::<usize>::new());
 //! let _lock = lock.read().await;
 //! lock.write_err().await.unwrap();
 //! # };
