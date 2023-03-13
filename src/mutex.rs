@@ -36,15 +36,13 @@ impl<T> Mutex<T> {
 	///
 	/// Panics when timeout is reached.
 	pub async fn lock(&self) -> tokio::sync::MutexGuard<'_, T> {
-		let guard = match timeout(self.timeout, self.inner.lock()).await {
+		match timeout(self.timeout, self.inner.lock()).await {
 			Ok(guard) => guard,
 			Err(_) => panic!(
 				"Timed out while waiting for `read` lock after {} seconds.",
 				self.timeout.as_secs()
 			),
-		};
-
-		guard
+		}
 	}
 
 	/// Wrapper around [`tokio::sync::Mutex::lock()`]. Will time out if the

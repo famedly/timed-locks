@@ -36,15 +36,13 @@ impl<T> RwLock<T> {
 	///
 	/// Panics when timeout is reached.
 	pub async fn read(&self) -> tokio::sync::RwLockReadGuard<'_, T> {
-		let read_guard = match timeout(self.timeout, self.inner.read()).await {
+		match timeout(self.timeout, self.inner.read()).await {
 			Ok(read_guard) => read_guard,
 			Err(_) => panic!(
 				"Timed out while waiting for `read` lock after {} seconds.",
 				self.timeout.as_secs()
 			),
-		};
-
-		read_guard
+		}
 	}
 
 	/// Wrapper around [`tokio::sync::RwLock::read()`]. Will time out if the
@@ -66,15 +64,13 @@ impl<T> RwLock<T> {
 	///
 	/// Panics when timeout is reached.
 	pub async fn write(&self) -> tokio::sync::RwLockWriteGuard<'_, T> {
-		let write_guard = match timeout(self.timeout, self.inner.write()).await {
+		match timeout(self.timeout, self.inner.write()).await {
 			Ok(write_guard) => write_guard,
 			Err(_) => panic!(
 				"Timed out while waiting for `write` lock after {} seconds.",
 				self.timeout.as_secs()
 			),
-		};
-
-		write_guard
+		}
 	}
 
 	/// Wrapper around [`tokio::sync::RwLock::write()`]. Will time out if

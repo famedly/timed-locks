@@ -50,18 +50,7 @@
 //! lock.write_err().await.unwrap();
 //! # };
 //! ```
-
-#![deny(trivial_casts, trivial_numeric_casts, unused_extern_crates, unused_qualifications)]
-#![warn(
-	missing_debug_implementations,
-	missing_docs,
-	unused_import_braces,
-	dead_code,
-	clippy::unwrap_used,
-	clippy::expect_used,
-	clippy::missing_docs_in_private_items,
-	clippy::missing_panics_doc
-)]
+#![allow(clippy::future_not_send)] // Allowed for locking.
 
 mod mutex;
 mod rwlock;
