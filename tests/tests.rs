@@ -1,3 +1,5 @@
+#![allow(unused_must_use)] // Locked for testing only.
+
 use std::{collections::HashSet, sync::Arc, time::Duration};
 
 use timed_locks::{Mutex, RwLock};
